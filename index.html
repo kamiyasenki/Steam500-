@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steam ランダムゲーム</title>
+  <meta name="description" content="Steamに配信されているゲームをランダムに1本表示するシンプルなルーレットツールです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-glow"></div>
+
+  <main class="container">
+    <header class="header">
+      <div class="logo">
+        <svg class="steam-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M11.979 0C5.678 0 .511 4.86.022 11.038l6.432 2.657a3.447 3.447 0 0 1 1.942-.593c.121 0 .24.007.359.02l2.97-4.305a4.34 4.34 0 0 1-.035-.555c0-2.4 1.949-4.35 4.352-4.35 2.403 0 4.352 1.95 4.352 4.35 0 2.404-1.949 4.352-4.352 4.352a4.37 4.37 0 0 1-2.02-.497l-4.24 3.013c.018.175.03.352.03.532 0 2.167-1.758 3.926-3.926 3.926-1.95 0-3.565-1.423-3.873-3.284L.278 14.86A12.007 12.007 0 0 0 11.979 24c6.627 0 12-5.373 12-12S18.606 0 11.979 0zm-3.666 16.59a2.502 2.502 0 1 1 2.5-2.502 2.504 2.504 0 0 1-2.5 2.502zm7.728-5.326a2.903 2.903 0 1 1 2.902-2.904 2.905 2.905 0 0 1-2.902 2.904z"/>
+        </svg>
+        <span class="logo-text">STEAM RANDOM</span>
+      </div>
+    </header>
+
+    <div class="card-wrapper">
+      <article class="game-card" id="gameCard">
+        <div class="image-container">
+          <img id="gameImage" src="" alt="ゲーム画像" class="game-image" loading="eager">
+          <div class="image-overlay"></div>
+        </div>
+        
+        <div class="card-content">
+          <h1 id="gameTitle" class="game-title">読み込み中...</h1>
+          
+          <div class="card-actions">
+            <a id="storeLink" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-store">
+              <span>Steamで見る</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="control-area">
+      <button id="drawButton" class="btn btn-primary" type="button">
+        <svg class="dice-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="3" ry="3"></rect>
+          <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"></circle>
+          <circle cx="15.5" cy="8.5" r="1.5" fill="currentColor"></circle>
+          <circle cx="12" cy="12" r="1.5" fill="currentColor"></circle>
+          <circle cx="8.5" cy="15.5" r="1.5" fill="currentColor"></circle>
+          <circle cx="15.5" cy="15.5" r="1.5" fill="currentColor"></circle>
+        </svg>
+        <span>別のゲームを引く</span>
+      </button>
+    </div>
+  </main>
+
+  <script src="games.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

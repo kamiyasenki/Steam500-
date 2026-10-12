@@ -1,0 +1,287 @@
+:root {
+  --bg-color: #0b0e14;
+  --card-bg: #141b24;
+  --card-border: rgba(102, 192, 244, 0.15);
+  --card-hover-border: rgba(102, 192, 244, 0.35);
+  
+  --text-main: #f0f4f8;
+  --text-sub: #8f98a0;
+  
+  --steam-blue: #66c0f4;
+  --steam-blue-hover: #8cd4ff;
+  --steam-dark-blue: #1b2838;
+  --steam-navy: #171a21;
+  
+  --accent-gradient: linear-gradient(135deg, #47bfff 0%, #1a9fff 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #64cbff 0%, #34a9ff 100%);
+  
+  --shadow-lg: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 30px rgba(102, 192, 244, 0.05);
+  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 背景グロー演出 */
+.background-glow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(102, 192, 244, 0.12) 0%, rgba(27, 40, 56, 0.04) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ヘッダー */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-sub);
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+
+.logo:hover {
+  color: var(--steam-blue);
+}
+
+.steam-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* カード */
+.card-wrapper {
+  width: 100%;
+  perspective: 1000px;
+}
+
+.game-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease, border-color 0.3s ease, opacity 0.25s ease;
+  will-change: transform, opacity;
+}
+
+.game-card:hover {
+  border-color: var(--card-hover-border);
+  transform: translateY(-2px);
+}
+
+/* カード画像エリア */
+.image-container {
+  width: 100%;
+  aspect-ratio: 460 / 215;
+  background-color: #0d1219;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.game-image.loaded {
+  opacity: 1;
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20, 27, 36, 0.8) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* カードコンテンツ */
+.card-content {
+  padding: 24px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.game-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--text-main);
+  min-height: 3.6em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* ボタン共通 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+  font-family: inherit;
+  border: none;
+  outline: none;
+}
+
+/* ストアリンクボタン */
+.btn-store {
+  width: 100%;
+  padding: 12px 18px;
+  background: rgba(102, 192, 244, 0.08);
+  color: var(--steam-blue);
+  border: 1px solid rgba(102, 192, 244, 0.2);
+  font-size: 0.95rem;
+}
+
+.btn-store:hover {
+  background: rgba(102, 192, 244, 0.16);
+  border-color: rgba(102, 192, 244, 0.4);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.btn-store:active {
+  transform: translateY(0);
+}
+
+/* コントロールエリア & メインガチャボタン */
+.control-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 16px 28px;
+  background: var(--accent-gradient);
+  color: #0b0e14;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 24px rgba(26, 159, 255, 0.35);
+}
+
+.btn-primary:hover {
+  background: var(--accent-gradient-hover);
+  box-shadow: 0 10px 28px rgba(26, 159, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 14px rgba(26, 159, 255, 0.25);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ダイスアイコンのアニメーション */
+.dice-icon {
+  transition: transform 0.4s ease;
+}
+
+.btn-primary:hover .dice-icon {
+  transform: rotate(45deg);
+}
+
+.btn-primary.animating .dice-icon {
+  transform: rotate(360deg);
+}
+
+/* カード切り替えアニメーション */
+.game-card.fade-out {
+  opacity: 0.3;
+  transform: scale(0.98);
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 480px) {
+  body {
+    padding: 16px;
+  }
+
+  .container {
+    gap: 20px;
+  }
+
+  .card-content {
+    padding: 18px 16px 16px;
+  }
+
+  .game-title {
+    font-size: 1.1rem;
+    min-height: auto;
+  }
+
+  .btn-primary {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+}
